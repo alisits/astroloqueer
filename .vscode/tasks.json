@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Backend",
+            "type": "shell",
+            "command": "python app.py",
+            "problemMatcher": [],
+            "group": { "kind": "build", "isDefault": true },
+            "options": { "cwd": "Backend" } 
+        },
+        {
+            "label": "Run Frontend",
+            "type": "shell",
+            "command": "npm run dev",
+            "problemMatcher": [],
+            "group": { "kind": "build", "isDefault": true },
+            "options": { "cwd": "Frontend" }  
+        }
+    ]
+}

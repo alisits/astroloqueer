@@ -1,0 +1,34 @@
+# ── Secrets and local configuration (never commit) ──
+.env
+.env.*
+!.env.example
+**/config.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ── AWS SAM build output ──
+.aws-sam/
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# ── Node / frontend ──
+node_modules/
+dist/
+dist-ssr/
+*.log
+*.local
+
+# ── OS and editor files ──
+.DS_Store
+Thumbs.db
+.idea/
+*.code-workspace
+.vscode/*
+!.vscode/tasks.json

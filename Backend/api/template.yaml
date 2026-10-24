@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Astroloqueer API (Flask on Lambda)
+
+Parameters:
+  Stage:
+    Type: String
+    Default: prod
+    AllowedValues: [prod, stage]
+
+Globals:
+  Function:
+    Runtime: python3.11
+    MemorySize: 512
+    Timeout: 30
+    LoggingConfig:
+      LogFormat: JSON
+
+Resources:
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: $default
+      CorsConfiguration:
+        AllowOrigins:
+          - https://www.astroloqueer.com
+          - https://astroloqueer.com
+          - http://localhost:8080
+          - https://stage--astroloqueer.netlify.app
+        AllowMethods:
+          - OPTIONS
+          - GET
+          - POST
+        AllowHeaders:
+          - content-type
+          - authorization
+          - accept
+        AllowCredentials: true
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: wsgi_handler.handler
+      Environment:
+        Variables:
+          LOG_LEVEL: INFO
+          STAGE: !Ref Stage
+          OPENAI_API_KEY: '{{resolve:secretsmanager:AstroloqueerOpenAI:SecretString:OPENAI_API_KEY}}'
+          GOOGLE_MAPS_API_KEY: '{{resolve:secretsmanager:AstroloqueerGoogleMaps:SecretString:GOOGLE_MAPS_API_KEY}}'
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+            Path: /{proxy+}
+            Method: ANY

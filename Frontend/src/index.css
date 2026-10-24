@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 40% 98%;
+    --foreground: 260 10% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 260 10% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 10% 10%;
+    
+    --primary: 260 50% 50%;
+    --primary-foreground: 260 10% 98%;
+    
+    --secondary: 260 30% 90%;
+    --secondary-foreground: 260 10% 10%;
+    
+    --muted: 260 30% 90%;
+    --muted-foreground: 260 10% 40%;
+    
+    --accent: 260 30% 90%;
+    --accent-foreground: 260 10% 10%;
+    
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 260 10% 98%;
+    
+    --border: 260 30% 90%;
+    --input: 260 30% 90%;
+    --ring: 260 50% 50%;
+    
+    --radius: 0.5rem;
+  }
+ 
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-['Space_Grotesk'];
+    background: linear-gradient(to bottom right, #663399, #1E90FF);
+    min-height: 100vh;
+    /* Optimize for performance */
+    will-change: auto;
+    transform: translateZ(0);
+  }
+  
+  /* Optimize images */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Optimize animations */
+  .animate-float {
+    will-change: transform;
+  }
+  
+  .animate-twinkle {
+    will-change: opacity;
+  }
+}
+
+.cosmic-card {
+  @apply bg-white/20 backdrop-blur-lg rounded-lg p-6 shadow-lg;
+}
+
+.star {
+  @apply absolute rounded-full bg-white;
+  /* Optimize for performance */
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+@layer utilities {
+  .logo-glow {
+    filter: drop-shadow(0 0 2em hsl(var(--primary) / 0.6));
+  }
+  
+  /* Performance optimizations */
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-twinkle {
+      animation: none;
+    }
+  }
+}
+

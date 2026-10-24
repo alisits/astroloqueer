@@ -1,0 +1,15 @@
+[build]
+  base    = "Frontend"
+  command = "npm run build"
+  publish = "dist"          # CRA = "build"
+
+[build.environment]
+  VITE_API_BASE = "https://api.astroloqueer.com"
+[context.branch-deploy.environment]
+  VITE_API_BASE = "https://api-stg.astroloqueer.com"
+
+# SPA redirect so React Router / Hashless URLs work
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200

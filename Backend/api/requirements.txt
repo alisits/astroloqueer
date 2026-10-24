@@ -1,0 +1,13 @@
+Flask
+requests
+pyswisseph
+flask-cors
+mangum
+asgiref>=3.7    
+openai>=2.24.0
+timezonefinder
+pytz
+dotenv
+python-json-logger
+typing_extensions
+numpy<2.0
