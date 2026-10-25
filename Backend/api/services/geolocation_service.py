@@ -12,7 +12,7 @@ class GeolocationService:
         self.api_key = ConfigService.get_config("GOOGLE_MAPS_API_KEY")
         if not self.api_key:
             logger.error("Google Maps API key is missing")
-            raise ValueError("Google Maps API key is missing (env var or config.json).")
+            raise ValueError("Google Maps API key is missing (set GOOGLE_MAPS_API_KEY).")
 
     def geocode_location(self, address: str) -> tuple[float, float]:
         url = (

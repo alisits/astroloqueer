@@ -17,7 +17,7 @@ if __name__ == "__main__":
 from services.geolocation_service import GeolocationService
 
 def main():
-    # Create an instance of GeolocationService (loads API key from config.json)
+    # Create an instance of GeolocationService (loads API key from the GOOGLE_MAPS_API_KEY environment variable)
     geolocation_service = GeolocationService()
 
     # Test with Berlin as the input address

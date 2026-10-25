@@ -7,7 +7,7 @@
             "command": "python app.py",
             "problemMatcher": [],
             "group": { "kind": "build", "isDefault": true },
-            "options": { "cwd": "Backend" } 
+            "options": { "cwd": "Backend/api" } 
         },
         {
             "label": "Run Frontend",
